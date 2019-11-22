@@ -1,0 +1,68 @@
+                BISECTION METHOD
+X1,X2,XM,FX1,FX2,FXM=[],[],[],[],[],[]
+from pandas import DataFrame
+epsilon=0.01
+def f(x):
+
+    return (x**3)+(7*x**2)+(14*x)-6
+temp=0
+while temp==0:
+    x1=float(input("enter x1 = "))
+    if (abs(f(x1))<=epsilon):
+        print(" root is = ",x1)
+        break
+    x2=float(input("enter x2 = "))
+    if (abs(f(x2))<=epsilon):
+        print(" root is = ",x2)
+        break
+    if(f(x1)*f(x2)<0):
+        temp=1
+    else:
+        print("root does not exist between given value of x1 and x2")
+xm=x2
+while (abs(f(xm))>epsilon):
+    xm=(x1+x2)/2
+    if (abs(f(xm))<=epsilon):
+        print(" root is = ",xm)
+        break
+    X1.append(x1)
+    X2.append(x2)
+    XM.append(xm)
+    FX1.append(f(x1))
+    FX2.append(f(x2))
+    FXM.append(f(xm))
+    if(f(x1)*f(xm)<0):
+        x2=xm
+    else:
+        x1=xm
+df = DataFrame({'x1': X1, 'x2': X2, 'xm':XM, 'f(x1)':FX1, 'f(x2)':FX2, 'f(xm)':FXM })
+print(df)
+print("root is = ",xm)
+
+                           
+
+
+
+
+
+
+
+
+                        OUTPUT 
+
+
+
+enter x1 = 0
+enter x2 = 1
+         x1               x2                  xm          f(x1)             f(x2)        f(xm)
+0  0.000000  1.000000  0.500000 -6.000000  16.000000  2.875000
+1  0.000000  0.500000  0.250000 -6.000000   2.875000 -2.046875
+2  0.250000  0.500000  0.375000 -2.046875   2.875000  0.287109
+3  0.250000  0.375000  0.312500 -2.046875   0.287109 -0.910889
+4  0.312500  0.375000  0.343750 -0.910889   0.287109 -0.319733
+5  0.343750  0.375000  0.359375 -0.319733   0.287109 -0.018284
+6  0.359375  0.375000  0.367188 -0.018284   0.287109  0.133918
+7  0.359375  0.367188  0.363281 -0.018284   0.133918  0.057694
+8  0.359375  0.363281  0.361328 -0.018284   0.057694  0.019674
+9  0.359375  0.361328  0.360352 -0.018284   0.019674  0.000687
+root is =  0.3603515625
